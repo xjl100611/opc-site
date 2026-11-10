@@ -155,6 +155,49 @@
 
 
 
+
+  /* ---------- 实景图版折叠（仅手机） ---------- */
+  (function () {
+    var grid = document.querySelector('[data-gallery]');
+    var btn = document.querySelector('.gal-more');
+    if (!grid || !btn) return;
+    var mq = window.matchMedia('(max-width: 820px)');
+    var hidden = Math.max(0, grid.children.length - 4);
+    var label = function (open) {
+      if (open) return '收起';
+      return hidden > 0 ? '展开全部实景（还有 ' + hidden + ' 张）' : '展开全部实景';
+    };
+    var sync = function () {
+      if (mq.matches) {
+        btn.hidden = false;
+        grid.setAttribute('data-collapse', '');
+        btn.setAttribute('aria-expanded', grid.getAttribute('data-open') === '1' ? 'true' : 'false');
+        btn.textContent = label(grid.getAttribute('data-open') === '1');
+      } else {
+        btn.hidden = true;
+        grid.removeAttribute('data-collapse');
+        grid.removeAttribute('data-open');
+        btn.textContent = label(false);
+      }
+    };
+    sync();
+    if (mq.addEventListener) mq.addEventListener('change', sync);
+    else mq.addListener(sync);
+    btn.addEventListener('click', function () {
+      var open = grid.getAttribute('data-open') === '1';
+      if (open) {
+        grid.removeAttribute('data-open');
+        btn.textContent = label(false);
+        btn.setAttribute('aria-expanded', 'false');
+        grid.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      } else {
+        grid.setAttribute('data-open', '1');
+        btn.textContent = label(true);
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  })();
+
   /* ---------- 联系页：按 ?topic= 预选来意 ---------- */
   (function () {
     var sel = document.getElementById('f-type');

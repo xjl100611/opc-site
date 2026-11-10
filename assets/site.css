@@ -446,7 +446,6 @@ html{scrollbar-color:var(--hair-2) var(--paper)}
   .axis-item{padding-right:0}
 }
 @media(max-width:520px){
-  .plates{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr;gap:32px}
   .cta-acts .btn{width:100%}
 }
@@ -547,9 +546,7 @@ html{scrollbar-color:var(--hair-2) var(--paper)}
   .theme-btn{width:40px;height:40px}
   .burger{width:40px;height:40px}
 }
-@media(max-width:430px){
-  .header-act .btn-primary{display:none}
-}
+
 
 /* ---------- 压缩：全站节奏收紧一档 ---------- */
 :root{--sp-7:68px;--sp-6:48px}
@@ -731,3 +728,101 @@ html{scrollbar-color:var(--hair-2) var(--paper)}
   pointer-events:none;font-variant-numeric:tabular-nums;
 }
 .vmodal-loading[hidden]{display:none}
+
+/* ============================================================
+   移动端：浮动胶囊头部 + 图版密度 + 视频控件避让字幕
+   ============================================================ */
+@media(max-width:820px){
+  .header{
+    background:var(--header-bg);
+    -webkit-backdrop-filter:saturate(180%) blur(12px);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:0;
+    padding:8px 12px;
+  }
+  .header-in{
+    height:56px;
+    padding:0 8px 0 10px;
+    gap:10px;
+    background:var(--paper);
+    border:1px solid var(--hair);
+    border-radius:16px;
+    box-shadow:0 12px 28px -22px rgba(17,19,21,.6);
+  }
+  .brand-logo{width:28px;height:28px;border-radius:7px}
+  .brand-name b{font-size:13.5px}
+  .brand-name span{display:none}
+  .theme-btn,.burger{width:38px;height:38px;border-radius:11px;border-color:transparent}
+  .theme-btn:hover,.burger:hover{border-color:var(--hair-2)}
+  .header-act{gap:6px}
+  .header-act .btn-sm{min-height:38px;padding:0 14px;border-radius:11px;font-size:13.5px}
+  .mobile-menu{
+    inset:72px 10px 12px;
+    border:1px solid var(--hair);
+    border-radius:16px;
+    padding:10px 16px 20px;
+    box-shadow:0 24px 60px -30px rgba(17,19,21,.5);
+  }
+}
+
+@media(max-width:430px){
+  .brand-name{display:none}          /* 只留 logo，把宽度让给按钮 */
+  .header-act .btn-sm{padding:0 13px;font-size:13px}
+}
+
+
+/* 图版：小屏两列，别一寸一张 */
+@media(max-width:520px){
+  .plates,.plates-3{grid-template-columns:repeat(2,1fr);gap:10px}
+  .plate-cap{font-size:11px;padding-top:7px;margin-top:7px;gap:6px}
+  .plate-cap span:last-child{font-size:10px}
+}
+
+/* 首屏视频控件挪到顶部，避开烧录字幕 */
+@media(max-width:600px){
+  .video-ui{top:8px;bottom:auto;padding:0 8px}
+  .video-open{padding:0 11px;font-size:11.5px;min-height:30px}
+  .video-open span{display:none}
+  .video-ctrl{width:30px;height:30px}
+}
+
+/* 小屏整体收紧一档间距 */
+@media(max-width:820px){
+  :root{--sp-7:56px;--sp-6:42px;--sp-5:30px}
+  .sec-head{margin-bottom:26px}
+  .cap3>div{padding:16px 0 12px}
+}
+
+/* 首屏视频在手机上用 16:9，少占高度且不裁画面 */
+@media(max-width:600px){
+  .plate-video .plate-box{aspect-ratio:16/9!important}
+}
+
+/* 抽屉底部动作条常驻，不用滚到底才能点 */
+@media(max-width:820px){
+  .mobile-menu{padding-bottom:0}
+  .mobile-menu .mm-foot{
+    position:sticky;bottom:0;
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+    background:var(--paper);
+    padding:12px 0 8px;margin-top:14px;
+    border-top:1px solid var(--hair);
+  }
+  .mobile-menu .mm-foot .btn-primary{grid-column:1 / -1}
+  .mobile-menu .mm-foot a{min-height:46px!important;padding:0 10px;font-size:14px}
+  .mobile-menu .mm-meta{display:none}
+}
+
+/* 实景折叠（仅手机）：默认 4 张，可展开 */
+@media(max-width:820px){
+  .plates[data-collapse]:not([data-open="1"]) > figure:nth-child(n+5){display:none}
+}
+.gal-more{
+  display:block;width:100%;margin-top:14px;min-height:46px;
+  border:1px solid var(--hair-2);border-radius:11px;background:transparent;
+  font-size:13.5px;color:var(--ink-2);letter-spacing:.02em;
+  transition:border-color .18s,color .18s,background-color .18s;
+}
+.gal-more:hover{border-color:var(--ink);color:var(--ink);background:var(--mark-soft)}
+.gal-more[hidden]{display:none}
+@media(min-width:821px){.gal-more{display:none}}
