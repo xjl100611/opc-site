@@ -42,7 +42,8 @@
 
 ## 明暗双主题
 - 版心 1440px，页头主航**绝对居中**（左右两侧留白对称，不跟动作按钮挤）。
-- 用 `:root` / `[data-theme="dark"]` 两套 token，全部走 CSS 变量，无第二份样式表。偏好存 `localStorage.cq-theme`，首屏用内联脚本预置，避免闪白。
+- 用 `:root` / `[data-theme="dark"]` 两套 token，全部走 CSS 变量，无第二份样式表。偏好**双写** `localStorage.cq-theme` + cookie `cq-theme`，首屏用内联脚本预置，避免闪白。
+- **主题持久化必须双写（localStorage + cookie），读取端双读**：客户反馈"点夜间模式后随便再点一个按钮夜间模式就没了"。根因是预览面板的 iframe 沙箱禁用了 localStorage，写入静默失败（`catch(e){}` 吞掉），换页/刷新后 head 脚本读不到 `dark`，被打回浅色。改法：`site.js` 的 `setStoredTheme()` 同时写 localStorage 和 cookie（`max-age=31536000;path=/;SameSite=Lax`）；head 内联脚本先读 localStorage，读不到再 `document.cookie` 兜底。实测只靠 cookie 也能跨页保持。**以后别只依赖单一存储**。
 - **浅色模式没有深色块**。对比面板用暖石灰 `#E9E3D8`（纸白 `#F4F4F1` 同族，只降半档明度）。米白直接切到黑/炭会让人眼重新适应，两次反馈都指向"刺眼"，所以彻底放弃明暗翻转，改用同一色系的明度差做分区。
 - 深色模式才启用真正的深色：页面 `#131417`，面板 `#1D2024`（略浅于页面，读作"抬起的一层"）。
 - 相邻两个深色面板之间加 1px `--dark-hair` 发丝线，避免糊成一整块。

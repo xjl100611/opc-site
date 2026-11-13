@@ -7,7 +7,7 @@
 <meta name="description" content="餐饮、茶业、3C 数码在江西本土跑通的案例，主体与口径可核。">
 <meta name="theme-color" content="#F4F4F1">
 <link rel="stylesheet" href="assets/site.css">
-<script>(function(){try{var t=localStorage.getItem("cq-theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}})();</script>
+<script>(function(){function q(k){try{var m=new URLSearchParams(location.search).get(k);return m||null}catch(e){return null}}function rc(k){try{var m=document.cookie.match(new RegExp("(?:^|; )"+k+"=([^;]*)"));return m?decodeURIComponent(m[1]):null}catch(e){return null}}function wn(){try{var v=window.name||"";return v.indexOf("cq-theme=")===0?v.slice(9):null}catch(e){return null}}function g(fn){try{return fn()}catch(e){return null}}var t=q("theme")||g(function(){return localStorage.getItem("cq-theme")})||g(function(){return sessionStorage.getItem("cq-theme")})||rc("cq-theme")||wn();if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.setAttribute("data-theme","dark")}})();</script>
 </head>
 <body>
 <a class="skip" href="#main">跳到主要内容</a>
@@ -110,19 +110,37 @@
 
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px" class="case3">
     <article>
-      <figure class="plate"><div class="plate-box r4x3"><span class="plate-label">门店实拍位</span></div><figcaption class="plate-cap"><span>餐饮 · 江西本土</span><span>4:3</span></figcaption></figure>
+      <div class="plate" style="background:var(--dark);border-color:var(--hair-2);padding:24px 24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px">
+        <span style="font-size:11px;letter-spacing:.16em;color:var(--dark-muted)">餐饮 · 江西本土</span>
+        <div>
+          <div style="font-size:52px;font-weight:500;line-height:1;color:var(--dark-ink);font-variant-numeric:tabular-nums">8<span style="font-size:18px;font-weight:400;color:var(--dark-muted);margin-left:6px">周</span></div>
+          <div style="font-size:13px;color:var(--dark-muted);margin-top:10px">从 0 到跑通获客</div>
+        </div>
+      </div>
       <h3 class="h3" style="margin-top:18px">本地茶饮，8 周跑通 AI 获客</h3>
       <p class="body" style="font-size:14.5px;color:var(--muted);margin-top:8px">从 0 搭内容生产线与 GEO 投放，门店自己发、自己接，日常只留 1 个人。</p>
       <div class="spec" style="margin-top:12px"><span>8 周跑通</span><span>1 人运营</span></div>
     </article>
     <article>
-      <figure class="plate"><div class="plate-box r4x3"><span class="plate-label">直播间接拍位</span></div><figcaption class="plate-cap"><span>3C 数码 · 门店</span><span>4:3</span></figcaption></figure>
+      <div class="plate" style="background:var(--dark);border-color:var(--hair-2);padding:24px 24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px">
+        <span style="font-size:11px;letter-spacing:.16em;color:var(--dark-muted)">3C 数码 · 门店</span>
+        <div>
+          <div style="font-size:52px;font-weight:500;line-height:1;color:var(--dark-ink);font-variant-numeric:tabular-nums">24<span style="font-size:18px;font-weight:400;color:var(--dark-muted);margin-left:6px">h 在线</span></div>
+          <div style="font-size:13px;color:var(--dark-muted);margin-top:10px">数字人顶掉一个主播班</div>
+        </div>
+      </div>
       <h3 class="h3" style="margin-top:18px">无人直播，顶掉一个主播班</h3>
       <p class="body" style="font-size:14.5px;color:var(--muted);margin-top:8px">数字人 24 小时在线，人力压到只留一个选品岗，夜间时段也不再空播。</p>
       <div class="spec" style="margin-top:12px"><span>24 h 在线</span><span>省 1 个班</span></div>
     </article>
     <article>
-      <figure class="plate"><div class="plate-box r4x3"><span class="plate-label">内容产线实拍位</span></div><figcaption class="plate-cap"><span>茶业品牌 · 内容</span><span>4:3</span></figcaption></figure>
+      <div class="plate" style="background:var(--dark);border-color:var(--hair-2);padding:24px 24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px">
+        <span style="font-size:11px;letter-spacing:.16em;color:var(--dark-muted)">茶业品牌 · 内容</span>
+        <div>
+          <div style="font-size:52px;font-weight:500;line-height:1;color:var(--dark-ink);font-variant-numeric:tabular-nums">120<span style="font-size:18px;font-weight:400;color:var(--dark-muted);margin-left:6px">条 / 月</span></div>
+          <div style="font-size:13px;color:var(--dark-muted);margin-top:10px">3 人撑起全平台更新</div>
+        </div>
+      </div>
       <h3 class="h3" style="margin-top:18px">AI 内容工厂，月更 120 条</h3>
       <p class="body" style="font-size:14.5px;color:var(--muted);margin-top:8px">选题、脚本、成片一条产线，3 人团队撑起全平台更新，不再靠外包排期。</p>
       <div class="spec" style="margin-top:12px"><span>120 条 / 月</span><span>3 人团队</span></div>
@@ -133,7 +151,7 @@
 <section class="shell sec">
   <div style="display:grid;grid-template-columns:minmax(0,.5fr) minmax(0,.5fr);gap:40px;align-items:end;margin-bottom:26px" class="head2">
     <h2 class="h2">园区动态</h2>
-    <p class="body" style="margin-left:auto">沙龙、入驻、路演、结算，都记在这里。政策单独放在一页，不混进动态里。</p>
+    <p class="body" style="margin-left:auto">沙龙、入驻、路演、结算，都记在这里。</p>
   </div>
   <div class="rows rv">
     <a class="row" href="visit.html"><span class="d">11-06</span><span class="t">首批 12 个项目入驻星链 OPC<small>园区动态 · 入驻名单与方向</small></span><span class="k">动态</span></a>

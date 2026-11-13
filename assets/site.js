@@ -349,6 +349,39 @@
   /* ---------- 主题切换 ---------- */
   var themeBtn = document.getElementById('themeBtn');
   var rootEl = document.documentElement;
+  // 主题持久化走多路兜底：localStorage / sessionStorage / cookie / window.name 全写。
+  // 原因：预览面板的 iframe 沙箱可能禁掉其中任意几种（实测至少 localStorage 会静默失败，
+  // catch(e){} 把报错吞掉），换页后 head 脚本读不到 dark 就被打回浅色。
+  // 写入：四种全试；读取：head 内联脚本按同序找，命中 dark 即用。
+  var setStoredTheme = function (val) {
+    try { localStorage.setItem('cq-theme', val); } catch (e) {}
+    try { sessionStorage.setItem('cq-theme', val); } catch (e) {}
+    try { document.cookie = 'cq-theme=' + val + ';max-age=31536000;path=/;SameSite=Lax'; } catch (e) {}
+    try { window.name = 'cq-theme=' + val; } catch (e) {}
+  };
+  // 关键兜底：预览环境可能四种存储全禁，那就把主题挂在站内链接的 URL 上带着跳页。
+  // head 脚本里 ?theme= 优先级最高，所以只要点击瞬间把当前主题拼进 href，跳页必不丢。
+  var currentTheme = function () {
+    return rootEl.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  };
+  var withTheme = function (href) {
+    try {
+      if (!href || /^(https?:|mailto:|tel:|javascript:|#)/i.test(href)) return href;
+      var hash = '';
+      var hi = href.indexOf('#');
+      if (hi > -1) { hash = href.slice(hi); href = href.slice(0, hi); }
+      var q = href.indexOf('?') > -1 ? '&' : '?';
+      return href + q + 'theme=' + currentTheme() + hash;
+    } catch (e) { return href; }
+  };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (!/\.html(\?|#|$)/i.test(href)) return;          // 只管站内 .html 链接
+    if (/theme=(dark|light)/.test(href)) return;         // 已带就不重复拼
+    a.setAttribute('href', withTheme(href));
+  }, true);
   if (themeBtn) {
     var syncTheme = function () {
       var dark = rootEl.getAttribute('data-theme') === 'dark';
@@ -362,10 +395,10 @@
       var dark = rootEl.getAttribute('data-theme') === 'dark';
       if (dark) {
         rootEl.removeAttribute('data-theme');
-        try { localStorage.setItem('cq-theme', 'light'); } catch (e) {}
+        setStoredTheme('light');
       } else {
         rootEl.setAttribute('data-theme', 'dark');
-        try { localStorage.setItem('cq-theme', 'dark'); } catch (e) {}
+        setStoredTheme('dark');
       }
       syncTheme();
     });

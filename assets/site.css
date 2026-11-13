@@ -395,7 +395,7 @@ html{scrollbar-color:var(--hair-2) var(--paper)}
 /* ---------- 页脚 ---------- */
 .footer{background:var(--dark);color:var(--dark-muted);padding:64px 0 28px;font-size:13px}
 .foot-in{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
-.foot-grid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,.62fr));gap:44px}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(4,minmax(0,.6fr));gap:36px}
 .foot-brand b{display:block;color:var(--dark-ink);font-size:15px;margin-bottom:12px;letter-spacing:.02em}
 .foot-brand p{line-height:1.8;max-width:32ch;color:var(--dark-muted)}
 .foot-col h5{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dark-muted);margin:0 0 16px;font-weight:600}

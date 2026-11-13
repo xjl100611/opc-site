@@ -61,4 +61,5 @@
 - 未确认口径（模型数 200+ vs 40+、备案号、门牌号）以本文件为准，上线前与客户复核。
 
 ## 技术
-纯静态：7 个 HTML + 1 个 CSS + 1 个 JS，无构建、无依赖、无外链字体。可直接放到任意静态托管。
+纯静态：20 个 HTML + 1 个 CSS（`assets/site.css`）+ 1 个 JS（`assets/site.js`），无构建、无依赖、无外链字体。可直接放到任意静态托管。
+- 夜间模式偏好**双写** `localStorage.cq-theme` + cookie `cq-theme`，每页 head 内联脚本双读（先 localStorage 后 cookie）。原因是预览面板的 iframe 沙箱可能禁用 localStorage，单靠它会换页丢主题。
